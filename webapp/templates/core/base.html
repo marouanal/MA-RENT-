@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>{%block title%}{%endblock%} / MaRent</title>
+</head>
+<body>
+    
+    <nav class="ml-auto py-6 px-6 flex justify-between items-center border-b bg-orange-300 border-gray-200">
+        <a href="/" class="px-5 py-2 text-xl font-semibold bg-gray-900 text-white rounded">MA RENT</a>
+
+        <div class="space-x-6">
+            <a href="{% url 'item:items' %}" class="px-4 py-2 text-lg font-semibold rounded-xl hover:bg-gray-500">Browse</a>
+            {% if request.user.is_authenticated %}
+                <a href="{% url 'item:new' %}" class="px-4 py-2 text-lg font-semibold rounded-xl hover:bg-gray-500">New Item</a>
+                           
+                <a href="{% url 'conversation:inbox' %}" class="px-4 py-2 text-lg font-semibold   rounded-xl hover:bg-gray-500">Inbox</a>
+                <a href="{% url 'dashboard:index' %}" class="px-4 py-2 text-lg font-semibold   rounded-xl hover:bg-gray-500">Dashboard</a>
+                <a href="{% url 'webapp:login' %}" class="px-4 py-2 text-lg font-semibold  rounded-xl hover:bg-gray-500">Log out</a>
+            {% else %}
+                <a href="{% url 'webapp:signup' %}" class="px-6 py-3 text-lg font-semibold bg-teal-500 text-white rounded-xl hover:bg-teal-700">Sign up</a>
+                <a href="{% url 'webapp:login' %}" class="px-6 py-3 text-lg font-semibold bg-gray-500 text-white rounded-xl hover:bg-gray-700">Log in</a>
+            {% endif %}
+        </div>
+    </nav>
+    <div class="px-6 py-6">
+        {% block content %}
+        {% endblock %}
+    </div>
+   
+
+    <footer class="py-4 px-4 w-full bg-gray-200 flex justify-between">  
+        <div class="text-center mx-auto">
+            <h3 class="font-semibold text-xl text-gray-900">MA RENT</h3>
+            <p class="my-auto text">Project For Web Development °2023 By Marouan Alouache</p>
+        </div> 
+    </footer>
+</body>
+</html>
